@@ -1,0 +1,2636 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বাংলাদেশ পলিটেকনিক ইনফরমেশন সিস্টেম</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏫</text></svg>">
+    
+    <style>
+        /* ---- CSS ডিজাইন শুরু ---- */
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+        :root {
+            --primary-color: #1565C0;
+            --secondary-color: #2c3e50;
+            --success-color: #2E7D32;
+            --warning-color: #FF9800;
+            --info-color: #0288D1;
+            --light-bg: #f0f2f5;
+            --card-hover: #e3f2fd;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            color: #333;
+            direction: ltr;
+        }
+
+        .mobile-container {
+            width: 100%;
+            max-width: 480px;
+            background-color: white;
+            min-height: 100vh;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* হেডার ডিজাইন */
+        .header {
+            margin: 20px;
+            padding: 10px;
+            border: 2px solid var(--secondary-color);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: white;
+        }
+
+        .header-blue {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+        .header-green {
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+        }
+
+        .header-orange {
+            background-color: var(--warning-color);
+            color: white;
+            border: none;
+        }
+
+        .header-info {
+            background-color: var(--info-color);
+            color: white;
+            border: none;
+        }
+
+        .back-btn {
+            position: absolute;
+            left: 10px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+        }
+
+        .back-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            flex: 1;
+        }
+
+        /* গ্রিড লেআউট */
+        .grid-3-col {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 20px;
+        }
+
+        /* কার্ড ডিজাইন */
+        .card {
+            background: white;
+            border: 1px solid var(--secondary-color);
+            border-radius: 15px;
+            padding: 15px 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 120px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background-color: var(--card-hover);
+        }
+
+        .card i {
+            font-size: 40px;
+            color: #546E7A;
+            margin-bottom: 10px;
+        }
+        
+        .card-blue i {
+            color: var(--primary-color);
+        }
+
+        .card h3 {
+            font-size: 14px;
+            margin: 0;
+            color: #333;
+            font-weight: 600;
+        }
+
+        /* পেজ লুকানো/দেখানো */
+        .page {
+            display: none;
+            animation: fadeIn 0.3s;
+        }
+
+        .active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ফর্ম ডিজাইন */
+        .form-container {
+            padding: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 16px;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(21, 101, 192, 0.2);
+        }
+
+        button.primary-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        button.primary-btn:hover {
+            background-color: #0d47a1;
+        }
+
+        button.secondary-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 5px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        button.secondary-btn:hover {
+            background-color: #1b5e20;
+        }
+
+        .admin-switch {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+            cursor: pointer;
+            text-decoration: underline;
+            padding: 10px;
+        }
+
+        /* রেজাল্ট টেবিল */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* লোডিং স্পিনার */
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: var(--primary-color);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* নোটিফিকেশন */
+        .notification {
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        
+        .notification.success {
+            background-color: #e8f5e9;
+            color: var(--success-color);
+            border: 1px solid #c8e6c9;
+        }
+        
+        .notification.error {
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+        }
+
+        .notification.info {
+            background-color: #e3f2fd;
+            color: var(--primary-color);
+            border: 1px solid #bbdefb;
+        }
+
+        /* তথ্য কার্ড স্টাইল */
+        .info-card {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .teacher-card {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .contact-card {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .institute-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .institute-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-color: var(--primary-color);
+        }
+        
+        .gov-badge {
+            background: var(--success-color);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-left: 8px;
+        }
+        
+        .non-gov-badge {
+            background: var(--warning-color);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-left: 8px;
+        }
+        
+        /* ফুটার */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #eee;
+            margin-top: 20px;
+        }
+        
+        .developer {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .current-year {
+            font-weight: 600;
+            color: var(--success-color);
+        }
+        
+        /* ইনস্টিটিউট ফিল্টার */
+        .institute-filter {
+            display: flex;
+            margin-bottom: 15px;
+            gap: 10px;
+        }
+        
+        .filter-btn {
+            flex: 1;
+            padding: 10px;
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        /* স্ক্রলবার স্টাইল */
+        ::-webkit-scrollbar {
+            height: 5px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+        
+        /* সার্চ বক্স */
+        .search-box {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        
+        .search-box input {
+            padding-left: 40px;
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        /* ছবি স্টাইল */
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .logo {
+            max-width: 100px;
+            max-height: 80px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+        
+        .news-image {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        
+        /* নিউজ ফিড স্টাইল */
+        .news-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .news-date {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .news-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+        
+        /* শেয়ার বাটন */
+        .share-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+        
+        .share-btn {
+            padding: 8px 15px;
+            border-radius: 8px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .share-btn.facebook {
+            background-color: #1877F2;
+        }
+        
+        .share-btn.whatsapp {
+            background-color: #25D366;
+        }
+        
+        .share-btn.link {
+            background-color: var(--success-color);
+        }
+        
+        /* লাইভ ইনডিকেটর */
+        .live-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--success-color);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background-color: white;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        /* রেস্পন্সিভ মিডিয়া কুয়েরি */
+        @media (max-width: 400px) {
+            .grid-3-col {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .header {
+                margin: 15px;
+            }
+            
+            .form-container {
+                padding: 15px;
+            }
+            
+            .live-indicator {
+                bottom: 10px;
+                right: 10px;
+                font-size: 10px;
+                padding: 5px 10px;
+            }
+        }
+        
+        /* ট্যাব স্টাইল */
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-weight: 500;
+            color: #666;
+        }
+        
+        .tab-btn.active {
+            border-bottom: 3px solid var(--success-color);
+            color: var(--success-color);
+        }
+    </style>
+</head>
+<body>
+
+<div class="mobile-container">
+    <!-- লাইভ ইনডিকেটর -->
+    <div class="live-indicator">
+        <span class="live-dot"></span>
+        <span>লাইভ</span>
+    </div>
+
+    <!-- হোম পেজ -->
+    <div id="page-home" class="page active">
+        <div class="header">
+            <button class="back-btn" onclick="goToPage('page-admin-login')" title="অ্যাডমিন লগইন">
+                <i class="fa-solid fa-user-lock"></i>
+            </button> 
+            <h2>বাংলাদেশ পলিটেকনিক ইনস্টিটিউট</h2>
+        </div>
+
+        <div class="grid-3-col">
+            <div class="card" onclick="goToPage('page-institutes')">
+                <i class="fa-solid fa-school"></i>
+                <h3>পলিটেকনিক ইনস্টিটিউট</h3>
+            </div>
+            <div class="card" onclick="goToPage('page-departments')">
+                <i class="fa-solid fa-building"></i>
+                <h3>সকল ডিপার্টমেন্ট</h3>
+            </div>
+            <div class="card" onclick="goToPage('page-student-search')">
+                <i class="fa-solid fa-users"></i>
+                <h3>শিক্ষার্থী তথ্য</h3>
+            </div>
+            <div class="card" onclick="goToPage('page-results')">
+                <i class="fa-solid fa-chart-column"></i>
+                <h3>রেজাল্ট</h3>
+            </div>
+            <div class="card" onclick="goToPage('page-teachers')">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <h3>শিক্ষকবৃন্দ</h3>
+            </div>
+            <div class="card" onclick="goToPage('page-contact')">
+                <i class="fa-solid fa-phone"></i>
+                <h3>যোগাযোগ</h3>
+            </div>
+        </div>
+        
+        <div class="share-buttons">
+            <a href="javascript:void(0);" onclick="shareOnFacebook()" class="share-btn facebook">
+                <i class="fab fa-facebook-f"></i> শেয়ার
+            </a>
+            <a href="javascript:void(0);" onclick="shareOnWhatsApp()" class="share-btn whatsapp">
+                <i class="fab fa-whatsapp"></i> শেয়ার
+            </a>
+            <a href="javascript:void(0);" onclick="copyLink()" class="share-btn link">
+                <i class="fa-solid fa-link"></i> লিঙ্ক
+            </a>
+        </div>
+        
+        <p class="admin-switch" onclick="goToPage('page-admin-login')">প্রতিষ্ঠান লগইন (অ্যাডমিন)</p>
+        
+        <div class="footer">
+            <p>Developed by <span class="developer">MD ZOBAER HASAN</span></p>
+            <p>© <span class="current-year" id="current-year"></span> - সকল অধিকার সংরক্ষিত</p>
+        </div>
+    </div>
+
+    <!-- ইনস্টিটিউট পেজ -->
+    <div id="page-institutes" class="page">
+        <div class="header header-blue">
+            <button class="back-btn" onclick="goToPage('page-home')">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <h2>পলিটেকনিক ইনস্টিটিউট</h2>
+        </div>
+        
+        <div class="form-container">
+            <div class="institute-filter">
+                <button class="filter-btn active" onclick="filterInstitutes('all')">সকল</button>
+                <button class="filter-btn" onclick="filterInstitutes('gov')">সরকারি</button>
+                <button class="filter-btn" onclick="filterInstitutes('non-gov')">বেসরকারি</button>
+            </div>
+            
+            <div class="search-box">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" id="institute-search" placeholder="ইনস্টিটিউট খুঁজুন..." onkeyup="searchInstitutes()">
+            </div>
+            
+            <div id="institutes-list">
+                <!-- ইনস্টিটিউট লিস্ট এখানে লোড হবে -->
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Developed by <span class="developer">MD ZOBAER HASAN</span></p>
+            <p>© <span class="current-year" id="current-year-institutes"></span> - সকল অধিকার সংরক্ষিত</p>
+        </div>
+    </div>
+
+    <!-- নতুন ইনস্টিটিউট রেজিস্ট্রেশন পেজ -->
+    <div id="page-register-institute" class="page">
+        <div class="header header-info">
+            <button class="back-btn" onclick="goToPage('page-institutes')">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <h2>নতুন ইনস্টিটিউট রেজিস্ট্রেশন</h2>
+        </div>
+        
+        <div class="form-container">
+            <div class="info-card">
+                <p>আপনার প্রতিষ্ঠান রেজিস্ট্রেশন করতে নিচের তথ্যগুলো পূরণ করুন। রেজিস্ট্রেশন সম্পন্ন হলে আপনাকে একটি ইউনিক কোড দেওয়া হবে যা দিয়ে আপনি লগইন করতে পারবেন।</p>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">প্রতিষ্ঠানের নাম</label>
+                <input type="text" id="reg-name" placeholder="প্রতিষ্ঠানের পূর্ণ নাম">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">প্রতিষ্ঠানের ধরন</label>
+                <select id="reg-type">
+                    <option value="gov">সরকারি</option>
+                    <option value="non-gov">বেসরকারি</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">ঠিকানা</label>
+                <textarea id="reg-address" placeholder="সম্পূর্ণ ঠিকানা" rows="3"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">জেলা</label>
+                <select id="reg-district">
+                    <option value="">জেলা নির্বাচন করুন</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">ফোন নম্বর</label>
+                <input type="text" id="reg-phone" placeholder="প্রতিষ্ঠানের ফোন নম্বর">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">ইমেইল</label>
+                <input type="email" id="reg-email" placeholder="প্রতিষ্ঠানের ইমেইল">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">ওয়েবসাইট (ঐচ্ছিক)</label>
+                <input type="text" id="reg-website" placeholder="প্রতিষ্ঠানের ওয়েবসাইট">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">স্থাপিত সাল</label>
+                <input type="number" id="reg-established" placeholder="প্রতিষ্ঠানের স্থাপিত সাল" min="1900" max="2030">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">লোগো আপলোড করুন (ঐচ্ছিক)</label>
+                <input type="file" id="reg-logo" accept="image/*">
+            </div>
+            
+            <button class="primary-btn" onclick="registerInstitute()">
+                <i class="fa-solid fa-paper-plane"></i> রেজিস্ট্রেশন সম্পন্ন করুন
+            </button>
+            
+            <div id="reg-message" class="notification" style="display: none;"></div>
+        </div>
+        
+        <div class="footer">
+            <p>Developed by <span class="developer">MD ZOBAER HASAN</span></p>
+            <p>© <span class="current-year" id="current-year-reg"></span> - সকল অধিকার সংরক্ষিত</p>
+        </div>
+    </div>
+
+    <!-- ডিপার্টমেন্ট পেজ -->
+    <div id="page-departments" class="page">
+        <div class="header header-green">
+            <button class="back-btn" onclick="goToPage('page-home')">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <h2>সকল ডিপার্টমেন্ট</h2>
+        </div>
+
+        <div class="grid-3-col">
+            <div class="card" onclick="openDept('সিভিল')">
+                <i class="fa-solid fa-building"></i>
+                <h3>সিভিল</h3>
+            </div>
+            <div class="card" onclick="openDept('কম্পিউটার')">
+                <i class="fa-solid fa-computer"></i>
+                <h3>কম্পিউটার</h3>
+            </div>
+            <div class="card" onclick="openDept('ইলেকট্রিক্যাল')">
+                <i class="fa-solid fa-bolt"></i>
+                <h3>ইলেকট্রিক্যাল</h3>
+            </div>
+            <div class="card" onclick="openDept('ইলেকট্রনিক্স')">
+                <i class="fa-solid fa-microchip"></i>
+                <h3>ইলেকট্রনিক্স</h3>
+            </div>
+            <div class="card" onclick="openDept('মেকানিক্যাল')">
+                <i class="fa-solid fa-gears"></i>
+                <h3>মেকানিক্যাল</h3>
+            </div>
+            <div class="card" onclick="openDept('পাওয়ার')">
+                <i class="fa-solid fa-plug"></i>
+                <h3>পাওয়ার</h3>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Developed by <span class="developer">MD ZOBAER HASAN</span></p>
+            <p>© <span class="current-year" id="current-year-dept"></span> - সকল অধিকার সংরক্ষিত</p>
+        </div>
+    </div>
+
+    <!-- ডিপার্টমেন্ট ডিটেইল পেজ -->
+    <div id="page-dept-detail" class="page">
+        <div class="header header-blue">
+            <button class="back-btn" onclick="goToPage('page-departments')">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <h2 id="dept-title">ডিপার্টমেন্ট</h2>
+        </div>
+
+        <div class="grid-2-col">
+            <div class="card" onclick="showDeptInfo()">
+                <i class="fa-solid fa-circle-info" style="color: var(--primary-color);"></i>
+                <h3>পরিচিতি</h3>
+            </div>
+            <div class="card" onclick="showTeachers()">
+                <i class="fa-solid fa-chalkboard-user" style="color: var(--primary-color);"></i>
+                <h3>শিক্ষকবৃন্দ</h3>
+            </div>
+            <div class="card" onclick="goToPage('page-student-search')">
+                <i class="fa-solid fa-users" style="color: var(--primary-color);"></i>
+                <h3>শিক্ষার্থী খুঁজুন</h3>
+            </div>
+            <div class="card" onclick="showContactInfo()">
+                <i class="fa-solid fa-phone" style="color: var(--primary-color);"></i>
+                <h3>যোগাযোগ</h3>
+            </div>
+        </div>
+        
+        <div id="dept-info-container" style="padding: 0 20px; display: none;">
+            <!-- ডিপার্টমেন্টের তথ্য এখানে দেখানো হবে -->
+        </div>
+        
+        <div class="footer">
+            <p>Developed by <span class="developer">MD ZOBAER HASAN</span></p>
+            <p>© <span class="current-year" id="current-year-dept-detail"></span> - সকল অধিকার সংরক্ষিত</p>
+        </div>
+    </div>
+
+    <!-- শিক্ষার্থী খোঁজ পেজ -->
+    <div id="page-student-search" class="page">
+        <div class="header header-orange">
+            <button class="back-btn" onclick="backToDept()">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <h2>শিক্ষার্থী তথ্য</h2>
+        </div>
+        <div class="form-container">
+            <div class="form-group">
+                <label class="form-label">শিক্ষার্থীর রোল নম্বর</label>
+                <input type="number" id="search-roll" placeholder="রোল নম্বর দিন...">
+            </div>
+            <button class="primary-btn" style="background-color: var(--warning-color);" onclick="searchStudent()">খুঁজুন</button>
+
+            <div id="search-loader" class="spinner" style="display: none;"></div>
+            <div id="search-result" style="margin-top: 20px;"></div>
+        </div>
+        
+        <div class="footer">
+            <p>Developed by <span class="developer">MD ZOBAER HASAN</span></p>
+            <p>© <span class="current-year" id="current-year-search"></span> - সকল অধিকার সংরক্ষিত</p>
+        </div>
+    </div>
+
+    <!-- রেজাল্ট পেজ -->
+    <div id="page-results" class="page">
+        <div class="header header-green">
+            <button class="back-btn" onclick="goToPage('page-home')">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <h2>রেজাল্ট</h2>
+        </div>
+        
+        <div class="form-container">
+            <div class="info-card">
+                <p>রেজাল্ট দেখতে নিচে রোল নম্বর দিন অথবা সেমিস্টার নির্বাচন করুন।</p>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">রোল নম্বর</label>
+                <input type="number" id="result-roll" placeholder="রোল নম্বর দিন...">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">সেমিস্টার নির্বাচন করুন</label>
+                <select id="result-semester">
+                    <option value="1">১ম সেমিস্টার</option>
+                    <option value="2">২য় সেমিস্টার</option>
+                    <option value="3">৩য় সেমিস্টার</option>
+                    <option value="4">৪র্থ সেমিস্টার</option>
+                    <option value="5">৫ম সেমিস্টার</option>
+                    <option value="6">৬ষ্ঠ সেমিস্টার</option>
+                    <option value="7">৭ম সেমিস্টার</option>
+                    <option value="8">৮ম সেমিস্টার</option>
+                </select>
+            </div>
+            
+            <button class="primary-btn" onclick="showResults()">রেজাল্ট দেখুন</button>
+            
+            <div id="result-display" style="margin-top: 20px;"></div>
+        </div>
+        
+        <div class="footer">
+            <p>Developed by <span class="developer">MD ZOBAER HASAN</span></p>
+            <p>© <span class="current-year" id="current-year-results"></span> - সকল অধিকার সংরক্ষিত</p>
+        </div>
+    </div>
+
+    <!-- শিক্ষক পেজ -->
+    <div id="page-teachers" class="page">
+        <div class="header header-info">
+            <button class="back-btn" onclick="goToPage('page-home')">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <h2>শিক্ষকবৃন্দ</h2>
+        </div>
+        
+        <div class="form-container">
+            <div class="info-card">
+                <p>বিভিন্ন বিভাগের শিক্ষকদের তালিকা দেখুন এবং তাদের সম্পর্কে বিস্তারিত জানুন।</p>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">বিভাগ নির্বাচন করুন</label>
+                <select id="teacher-dept" onchange="loadTeachers()">
+                    <option value="">সকল বিভাগ</option>
+                    <option value="সিভিল">সিভিল</option>
+                    <option value="কম্পিউটার">কম্পিউটার</option>
+                    <option value="ইলেকট্রিক্যাল">ইলেকট্রিক্যাল</option>
+                    <option value="ইলেকট্রনিক্স">ইলেকট্রনিক্স</option>
+                    <option value="মেকানিক্যাল">মেকানিক্যাল</option>
+                    <option value="পাওয়ার">পাওয়ার</option>
+                </select>
+            </div>
+            
+            <div id="teachers-list">
+                <!-- শিক্ষকদের তালিকা এখানে লোড হবে -->
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Developed by <span class="developer">MD ZOBAER HASAN</span></p>
+            <p>© <span class="current-year" id="current-year-teachers"></span> - সকল অধিকার সংরক্ষিত</p>
+        </div>
+    </div>
+
+    <!-- যোগাযোগ পেজ -->
+    <div id="page-contact" class="page">
+        <div class="header header-blue">
+            <button class="back-btn" onclick="goToPage('page-home')">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <h2>যোগাযোগ</h2>
+        </div>
+        
+        <div class="form-container">
+            <div id="contact-info">
+                <!-- যোগাযোগ তথ্য এখানে লোড হবে -->
+            </div>
+            
+            <div class="info-card">
+                <h3 style="color: var(--primary-color); margin-top: 0;">সাইটটি শেয়ার করুন</h3>
+                <div class="share-buttons">
+                    <a href="javascript:void(0);" onclick="shareOnFacebook()" class="share-btn facebook">
+                        <i class="fab fa-facebook-f"></i> ফেসবুক
+                    </a>
+                    <a href="javascript:void(0);" onclick="shareOnWhatsApp()" class="share-btn whatsapp">
+                        <i class="fab fa-whatsapp"></i> হোয়াটসঅ্যাপ
+                    </a>
+                    <a href="javascript:void(0);" onclick="copyLink()" class="share-btn link">
+                        <i class="fa-solid fa-link"></i> লিঙ্ক কপি
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Developed by <span class="developer">MD ZOBAER HASAN</span></p>
+            <p>© <span class="current-year" id="current-year-contact"></span> - সকল অধিকার সংরক্ষিত</p>
+        </div>
+    </div>
+
+    <!-- অ্যাডমিন লগইন পেজ -->
+    <div id="page-admin-login" class="page">
+        <div class="header" style="background-color: var(--secondary-color);">
+            <button class="back-btn" onclick="goToPage('page-home')">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <h2>প্রতিষ্ঠান লগইন</h2>
+        </div>
+        <div class="form-container" style="text-align: center; margin-top: 50px;">
+            <i class="fa-solid fa-user-shield" style="font-size: 60px; color: var(--secondary-color); margin-bottom: 20px;"></i>
+            <p>আপনার প্রতিষ্ঠানের তথ্য দিন</p>
+            
+            <div class="form-group">
+                <label class="form-label">প্রতিষ্ঠান নির্বাচন করুন</label>
+                <select id="admin-institute">
+                    <option value="">প্রতিষ্ঠান নির্বাচন করুন</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">প্রতিষ্ঠানের কোড</label>
+                <input type="password" id="admin-pass" placeholder="প্রতিষ্ঠানের কোড দিন">
+            </div>
+            
+            <button class="primary-btn" style="background-color: var(--secondary-color);" onclick="adminLogin()">লগইন</button>
+            <p style="color: #c62828; display: none;" id="login-error">ভুল কোড! আবার চেষ্টা করুন</p>
+            
+            <div class="admin-switch" onclick="goToPage('page-register-institute')">
+                নতুন প্রতিষ্ঠান রেজিস্ট্রেশন করুন
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Developed by <span class="developer">MD ZOBAER HASAN</span></p>
+            <p>© <span class="current-year" id="current-year-admin"></span> - সকল অধিকার সংরক্ষিত</p>
+        </div>
+    </div>
+
+    <!-- অ্যাডমিন ড্যাশবোর্ড -->
+    <div id="page-admin-dashboard" class="page">
+        <div class="header" style="background-color: var(--success-color);">
+            <button class="back-btn" onclick="logout()">
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </button>
+            <h2 id="admin-title">অ্যাডমিন ড্যাশবোর্ড</h2>
+        </div>
+        
+        <div class="form-container">
+            <!-- ট্যাব মেনু -->
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="openTab('student-tab')">শিক্ষার্থী</button>
+                <button class="tab-btn" onclick="openTab('teacher-tab')">শিক্ষক</button>
+                <button class="tab-btn" onclick="openTab('news-tab')">নিউজ</button>
+                <button class="tab-btn" onclick="openTab('settings-tab')">সেটিংস</button>
+            </div>
+            
+            <!-- শিক্ষার্থী ট্যাব -->
+            <div id="student-tab" class="tab-content active">
+                <h3 style="color: var(--success-color); margin-bottom: 15px;">নতুন শিক্ষার্থীর তথ্য যোগ করুন</h3>
+                
+                <div class="form-group">
+                    <label class="form-label">শিক্ষার্থীর নাম</label>
+                    <input type="text" id="new-name" placeholder="পূর্ণ নাম লিখুন">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">রোল নম্বর</label>
+                    <input type="number" id="new-roll" placeholder="রোল নম্বর">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">বিভাগ নির্বাচন করুন</label>
+                    <select id="new-dept">
+                        <option value="সিভিল">সিভিল</option>
+                        <option value="কম্পিউটার">কম্পিউটার</option>
+                        <option value="ইলেকট্রিক্যাল">ইলেকট্রিক্যাল</option>
+                        <option value="ইলেকট্রনিক্স">ইলেকট্রনিক্স</option>
+                        <option value="মেকানিক্যাল">মেকানিক্যাল</option>
+                        <option value="পাওয়ার">পাওয়ার</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">সেমিস্টার</label>
+                    <select id="new-semester">
+                        <option value="1">১ম সেমিস্টার</option>
+                        <option value="2">২য় সেমিস্টার</option>
+                        <option value="3">৩য় সেমিস্টার</option>
+                        <option value="4">৪র্থ সেমিস্টার</option>
+                        <option value="5">৫ম সেমিস্টার</option>
+                        <option value="6">৬ষ্ঠ সেমিস্টার</option>
+                        <option value="7">৭ম সেমিস্টার</option>
+                        <option value="8">৮ম সেমিস্টার</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">ছবি আপলোড করুন (ঐচ্ছিক)</label>
+                    <input type="file" id="new-photo" accept="image/*">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">রেজাল্ট (CGPA)</label>
+                    <input type="text" id="new-result" placeholder="রেজাল্ট (উদা: 3.50)">
+                </div>
+                
+                <button class="primary-btn" onclick="addStudentData()">সেভ করুন</button>
+                <div id="save-msg" class="notification success" style="display: none;">সফলভাবে সেভ হয়েছে!</div>
+                
+                <hr style="margin: 20px 0;">
+                <h4 style="color: var(--primary-color); margin-bottom: 10px;">বর্তমান তালিকা:</h4>
+                <div id="admin-list"></div>
+                <button class="secondary-btn" onclick="clearAllData()" style="background-color: #c62828; margin-top: 10px;">সব ডাটা ডিলিট করুন</button>
+            </div>
+            
+            <!-- শিক্ষক ট্যাব -->
+            <div id="teacher-tab" class="tab-content">
+                <h3 style="color: var(--success-color); margin-bottom: 15px;">নতুন শিক্ষকের তথ্য যোগ করুন</h3>
+                
+                <div class="form-group">
+                    <label class="form-label">শিক্ষকের নাম</label>
+                    <input type="text" id="teacher-name" placeholder="পূর্ণ নাম লিখুন">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">বিভাগ নির্বাচন করুন</label>
+                    <select id="teacher-dept-admin">
+                        <option value="সিভিল">সিভিল</option>
+                        <option value="কম্পিউটার">কম্পিউটার</option>
+                        <option value="ইলেকট্রিক্যাল">ইলেকট্রিক্যাল</option>
+                        <option value="ইলেকট্রনিক্স">ইলেকট্রনিক্স</option>
+                        <option value="মেকানিক্যাল">মেকানিক্যাল</option>
+                        <option value="পাওয়ার">পাওয়ার</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">পদবী</label>
+                    <input type="text" id="teacher-position" placeholder="পদবী লিখুন">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">ইমেইল</label>
+                    <input type="email" id="teacher-email" placeholder="ইমেইল লিখুন">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">ফোন নম্বর</label>
+                    <input type="text" id="teacher-phone" placeholder="ফোন নম্বর লিখুন">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">ছবি আপলোড করুন (ঐচ্ছিক)</label>
+                    <input type="file" id="teacher-photo" accept="image/*">
+                </div>
+                
+                <button class="primary-btn" onclick="addTeacherData()">সেভ করুন</button>
+                <div id="teacher-save-msg" class="notification success" style="display: none;">সফলভাবে সেভ হয়েছে!</div>
+                
+                <hr style="margin: 20px 0;">
+                <h4 style="color: var(--primary-color); margin-bottom: 10px;">বর্তমান শিক্ষক তালিকা:</h4>
+                <div id="teacher-admin-list"></div>
+            </div>
+            
+            <!-- নিউজ ট্যাব -->
+            <div id="news-tab" class="tab-content">
+                <h3 style="color: var(--success-color); margin-bottom: 15px;">নতুন নিউজ পোস্ট করুন</h3>
+                
+                <div class="form-group">
+                    <label class="form-label">নিউজ শিরোনাম</label>
+                    <input type="text" id="news-title" placeholder="নিউজের শিরোনাম লিখুন">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">নিউজ বিস্তারিত</label>
+                    <textarea id="news-content" placeholder="নিউজের বিস্তারিত লিখুন" rows="4"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">ছবি আপলোড করুন (ঐচ্ছিক)</label>
+                    <input type="file" id="news-image" accept="image/*">
+                </div>
+                
+                <button class="primary-btn" onclick="addNews()">পোস্ট করুন</button>
+                <div id="news-save-msg" class="notification success" style="display: none;">সফলভাবে পোস্ট হয়েছে!</div>
+                
+                <hr style="margin: 20px 0;">
+                <h4 style="color: var(--primary-color); margin-bottom: 10px;">বর্তমান নিউজ:</h4>
+                <div id="news-admin-list"></div>
+            </div>
+            
+            <!-- সেটিংস ট্যাব -->
+            <div id="settings-tab" class="tab-content">
+                <h3 style="color: var(--success-color); margin-bottom: 15px;">প্রতিষ্ঠান সেটিংস</h3>
+                
+                <div class="info-card">
+                    <h4 style="color: var(--primary-color); margin-top: 0;">প্রতিষ্ঠান তথ্য</h4>
+                    <p id="institute-info-display">লোড হচ্ছে...</p>
+                </div>
+                
+                <div class="info-card">
+                    <h4 style="color: var(--primary-color); margin-top: 0;">লগইন কোড</h4>
+                    <p><strong>আপনার প্রতিষ্ঠান কোড:</strong> <span id="institute-code-display" style="color: var(--success-color); font-weight: bold;">লোড হচ্ছে...</span></p>
+                    <p style="color: red; font-size: 12px; margin-top: 5px;">এই কোডটি শেয়ার করবেন না!</p>
+                </div>
+                
+                <div class="info-card">
+                    <h4 style="color: var(--primary-color); margin-top: 0;">সাইট শেয়ার করুন</h4>
+                    <div class="share-buttons">
+                        <a href="javascript:void(0);" onclick="shareOnFacebook()" class="share-btn facebook">
+                            <i class="fab fa-facebook-f"></i> ফেসবুক
+                        </a>
+                        <a href="javascript:void(0);" onclick="shareOnWhatsApp()" class="share-btn whatsapp">
+                            <i class="fab fa-whatsapp"></i> হোয়াটসঅ্যাপ
+                        </a>
+                        <a href="javascript:void(0);" onclick="copyLink()" class="share-btn link">
+                            <i class="fa-solid fa-link"></i> লিঙ্ক কপি
+                        </a>
+                    </div>
+                </div>
+                
+                <button class="primary-btn" style="background-color: #c62828;" onclick="clearAllData()">
+                    <i class="fa-solid fa-trash"></i> সব ডাটা ডিলিট করুন
+                </button>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Developed by <span class="developer">MD ZOBAER HASAN</span></p>
+            <p>© <span class="current-year" id="current-year-dashboard"></span> - সকল অধিকার সংরক্ষিত</p>
+        </div>
+    </div>
+
+    <!-- ইনস্টিটিউট ডিটেইল পেজ -->
+    <div id="page-institute-detail" class="page">
+        <div class="header header-info">
+            <button class="back-btn" onclick="goToPage('page-institutes')">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <h2 id="institute-detail-title">ইনস্টিটিউট</h2>
+        </div>
+        
+        <div class="form-container">
+            <div id="institute-logo-container" style="text-align: center; margin-bottom: 20px;"></div>
+            
+            <div id="institute-detail-info">
+                <!-- ইনস্টিটিউটের বিস্তারিত তথ্য এখানে দেখানো হবে -->
+            </div>
+            
+            <div class="grid-2-col" style="margin-top: 20px;">
+                <div class="card" onclick="showInstituteTeachers()">
+                    <i class="fa-solid fa-chalkboard-user" style="color: var(--primary-color);"></i>
+                    <h3>শিক্ষকবৃন্দ</h3>
+                </div>
+                <div class="card" onclick="showInstituteNews()">
+                    <i class="fa-solid fa-newspaper" style="color: var(--primary-color);"></i>
+                    <h3>নিউজ</h3>
+                </div>
+                <div class="card" onclick="goToPage('page-student-search')">
+                    <i class="fa-solid fa-users" style="color: var(--primary-color);"></i>
+                    <h3>শিক্ষার্থী খুঁজুন</h3>
+                </div>
+                <div class="card" onclick="goToPage('page-contact')">
+                    <i class="fa-solid fa-phone" style="color: var(--primary-color);"></i>
+                    <h3>যোগাযোগ</h3>
+                </div>
+            </div>
+            
+            <div id="institute-content-container" style="margin-top: 20px;">
+                <!-- শিক্ষক বা নিউজ কন্টেন্ট এখানে দেখানো হবে -->
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Developed by <span class="developer">MD ZOBAER HASAN</span></p>
+            <p>© <span class="current-year" id="current-year-institute-detail"></span> - সকল অধিকার সংরক্ষিত</p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // ---- JavaScript লজিক শুরু ----
+
+    // ১. স্বয়ংক্রিয় বছর আপডেট ফাংশন
+    function updateYear() {
+        const currentYear = new Date().getFullYear();
+        document.querySelectorAll('.current-year').forEach(element => {
+            element.textContent = currentYear;
+        });
+    }
+
+    // ২. বাংলাদেশের সকল জেলার তালিকা
+    const districts = [
+        "ঢাকা", "ফরিদপুর", "গাজীপুর", "গোপালগঞ্জ", "কিশোরগঞ্জ", "মাদারীপুর", "মানিকগঞ্জ", 
+        "মুন্সিগঞ্জ", "নারায়ণগঞ্জ", "নরসিংদী", "রাজবাড়ী", "শরীয়তপুর", "টাঙ্গাইল", 
+        "চট্টগ্রাম", "কক্সবাজার", "কুমিল্লা", "নোয়াখালী", "ফেনী", "ব্রাহ্মণবাড়িয়া", 
+        "রাঙ্গামাটি", "লক্ষ্মীপুর", "চাঁদপুর", "খাগড়াছড়ি", "বান্দরবান", 
+        "রাজশাহী", "বগুড়া", "পাবনা", "নাটোর", "সিরাজগঞ্জ", "জয়পুরহাট", "চাঁপাইনবাবগঞ্জ", 
+        "নওগাঁ", 
+        "খুলনা", "বাগেরহাট", "সাতক্ষীরা", "যশোর", "নড়াইল", "চুয়াডাঙ্গা", "কুষ্টিয়া", 
+        "মাগুরা", "মেহেরপুর", "ঝিনাইদহ", 
+        "বরিশাল", "পটুয়াখালী", "পিরোজপুর", "ভোলা", "ঝালকাঠি", "বরগুনা", 
+        "সিলেট", "মৌলভীবাজার", "হবিগঞ্জ", "সুনামগঞ্জ", 
+        "রংপুর", "দিনাজপুর", "গাইবান্ধা", "কুড়িগ্রাম", "লালমনিরহাট", "নীলফামারী", "পঞ্চগড়", "ঠাকুরগাঁও", 
+        "ময়মনসিংহ", "জামালপুর", "শেরপুর", "নেত্রকোণা"
+    ];
+
+    // ৩. বাংলাদেশের ৪৯টি সরকারি পলিটেকনিক ইনস্টিটিউট
+    const governmentPolytechnics = [
+        {
+            id: "dhaka",
+            name: "ঢাকা পলিটেকনিক ইনস্টিটিউট",
+            code: "1234",
+            type: "gov",
+            address: "তেজগাঁও, ঢাকা",
+            district: "ঢাকা",
+            phone: "০২-৯১০০১২৩",
+            email: "info@dhakapolytechnic.edu.bd",
+            website: "www.dhakapolytechnic.edu.bd",
+            established: "১৯৫৫",
+            logo: null
+        },
+        {
+            id: "chittagong",
+            name: "চট্টগ্রাম পলিটেকনিক ইনস্টিটিউট",
+            code: "5678",
+            type: "gov",
+            address: "চট্টগ্রাম",
+            district: "চট্টগ্রাম",
+            phone: "০৩১-৬৫৪৩২১",
+            email: "info@ctgpolytechnic.edu.bd",
+            website: "www.ctgpolytechnic.edu.bd",
+            established: "১৯৬২",
+            logo: null
+        },
+        {
+            id: "rajshahi",
+            name: "রাজশাহী পলিটেকনিক ইনস্টিটিউট",
+            code: "9012",
+            type: "gov",
+            address: "রাজশাহী",
+            district: "রাজশাহী",
+            phone: "০৭২১-৭৭৬৬৫৫",
+            email: "info@rajshahipolytechnic.edu.bd",
+            website: "www.rajshahipolytechnic.edu.bd",
+            established: "১৯৬৩",
+            logo: null
+        },
+        {
+            id: "khulna",
+            name: "খুলনা পলিটেকনিক ইনস্টিটিউট",
+            code: "3456",
+            type: "gov",
+            address: "খুলনা",
+            district: "খুলনা",
+            phone: "০৪১-৭২০০১১",
+            email: "info@khulnapolytechnic.edu.bd",
+            website: "www.khulnapolytechnic.edu.bd",
+            established: "১৯৬৪",
+            logo: null
+        },
+        {
+            id: "barisal",
+            name: "বরিশাল পলিটেকনিক ইনস্টিটিউট",
+            code: "7890",
+            type: "gov",
+            address: "বরিশাল",
+            district: "বরিশাল",
+            phone: "০৪৩১-৬২৩৪৫৬",
+            email: "info@barisalpolytechnic.edu.bd",
+            website: "www.barisalpolytechnic.edu.bd",
+            established: "১৯৬৫",
+            logo: null
+        },
+        {
+            id: "sylhet",
+            name: "সিলেট পলিটেকনিক ইনস্টিটিউট",
+            code: "2345",
+            type: "gov",
+            address: "সিলেট",
+            district: "সিলেট",
+            phone: "০৮২১-৭১০০২২",
+            email: "info@sylhetpolytechnic.edu.bd",
+            website: "www.sylhetpolytechnic.edu.bd",
+            established: "১৯৬৬",
+            logo: null
+        },
+        {
+            id: "rangpur",
+            name: "রংপুর পলিটেকনিক ইনস্টিটিউট",
+            code: "6789",
+            type: "gov",
+            address: "রংপুর",
+            district: "রংপুর",
+            phone: "০৫২১-৬১২৩৪",
+            email: "info@rangpurpolytechnic.edu.bd",
+            website: "www.rangpurpolytechnic.edu.bd",
+            established: "১৯৬৭",
+            logo: null
+        },
+        {
+            id: "gazipur",
+            name: "গাজীপুর পলিটেকনিক ইনস্টিটিউট",
+            code: "1122",
+            type: "gov",
+            address: "গাজীপুর",
+            district: "গাজীপুর",
+            phone: "০২-৯২৯১১২৩",
+            email: "info@gazipurpolytechnic.edu.bd",
+            website: "www.gazipurpolytechnic.edu.bd",
+            established: "১৯৮০",
+            logo: null
+        }
+    ];
+
+    // ৪. বেসরকারি পলিটেকনিক ইনস্টিটিউট
+    let privatePolytechnics = JSON.parse(localStorage.getItem('privatePolytechnics')) || [
+        {
+            id: "private1",
+            name: "ইস্টার্ন পলিটেকনিক ইনস্টিটিউট",
+            code: "5001",
+            type: "non-gov",
+            address: "মতিঝিল, ঢাকা",
+            district: "ঢাকা",
+            phone: "০২-৯৫৫৬৬৭৭",
+            email: "info@easternpolytechnic.edu.bd",
+            website: "www.easternpolytechnic.edu.bd",
+            established: "১৯৯৫",
+            logo: null
+        },
+        {
+            id: "private2",
+            name: "নর্থার্ন পলিটেকনিক ইনস্টিটিউট",
+            code: "5002",
+            type: "non-gov",
+            address: "মিরপুর, ঢাকা",
+            district: "ঢাকা",
+            phone: "০২-৯০০১১২২",
+            email: "info@northernpolytechnic.edu.bd",
+            website: "www.northernpolytechnic.edu.bd",
+            established: "১৯৯৮",
+            logo: null
+        }
+    ];
+
+    // ৫. সকল ইনস্টিটিউটের সমন্বিত তালিকা
+    function getAllInstitutes() {
+        return [...governmentPolytechnics, ...privatePolytechnics];
+    }
+
+    // ৬. নেভিগেশন সিস্টেম
+    let currentDept = '';
+    let currentInstitute = '';
+    let currentPageHistory = ['page-home'];
+    let currentAdminInstitute = '';
+    let currentInstituteFilter = 'all';
+
+    function goToPage(pageId) {
+        // সব পেজ লুকাও
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
+        
+        // কাঙ্ক্ষিত পেজ দেখাও
+        document.getElementById(pageId).classList.add('active');
+        
+        // পেজ হিস্ট্রি আপডেট করো
+        if (currentPageHistory[currentPageHistory.length - 1] !== pageId) {
+            currentPageHistory.push(pageId);
+        }
+        
+        // হিস্ট্রি খুব বড় হয়ে গেলে প্রথম দিকের এন্ট্রি মুছে ফেলো
+        if (currentPageHistory.length > 10) {
+            currentPageHistory.shift();
+        }
+        
+        // বছর আপডেট করো
+        updateYear();
+        
+        // নির্দিষ্ট পেজের জন্য অতিরিক্ত সেটআপ
+        if (pageId === 'page-institutes') {
+            loadInstitutesList();
+        } else if (pageId === 'page-register-institute') {
+            populateDistrictDropdown();
+        } else if (pageId === 'page-teachers') {
+            loadTeachers();
+        } else if (pageId === 'page-contact') {
+            loadContactInfo();
+        } else if (pageId === 'page-admin-login') {
+            populateAdminInstituteDropdown();
+        } else if (pageId === 'page-admin-dashboard') {
+            renderAdminList();
+            renderTeacherAdminList();
+            renderNewsAdminList();
+            updateInstituteInfo();
+        }
+    }
+
+    // ৭. শেয়ারিং ফাংশন
+    function shareOnFacebook() {
+        const url = window.location.href;
+        const text = "বাংলাদেশ পলিটেকনিক ইনফরমেশন সিস্টেম - সকল পলিটেকনিকের তথ্য এক জায়গায়";
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    function shareOnWhatsApp() {
+        const url = window.location.href;
+        const text = "বাংলাদেশ পলিটেকনিক ইনফরমেশন সিস্টেম দেখুন: " + url;
+        window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    function copyLink() {
+        const url = window.location.href;
+        navigator.clipboard.writeText(url).then(() => {
+            alert("লিঙ্ক কপি করা হয়েছে! শেয়ার করুন।");
+        });
+    }
+
+    // ৮. ইনস্টিটিউট ফিল্টারিং এবং সার্চ ফাংশন
+    function filterInstitutes(type) {
+        currentInstituteFilter = type;
+        
+        // ফিল্টার বাটন আপডেট
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
+        
+        loadInstitutesList();
+    }
+
+    function searchInstitutes() {
+        loadInstitutesList();
+    }
+
+    // ৯. ইনস্টিটিউট লিস্ট লোড করার ফাংশন
+    function loadInstitutesList() {
+        const institutesList = document.getElementById('institutes-list');
+        const searchTerm = document.getElementById('institute-search').value.toLowerCase();
+        
+        let filteredInstitutes = getAllInstitutes();
+        
+        // টাইপ ফিল্টার প্রয়োগ
+        if (currentInstituteFilter === 'gov') {
+            filteredInstitutes = filteredInstitutes.filter(inst => inst.type === 'gov');
+        } else if (currentInstituteFilter === 'non-gov') {
+            filteredInstitutes = filteredInstitutes.filter(inst => inst.type === 'non-gov');
+        }
+        
+        // সার্চ টার্ম ফিল্টার প্রয়োগ
+        if (searchTerm) {
+            filteredInstitutes = filteredInstitutes.filter(inst => 
+                inst.name.toLowerCase().includes(searchTerm) ||
+                inst.district.toLowerCase().includes(searchTerm) ||
+                inst.address.toLowerCase().includes(searchTerm)
+            );
+        }
+        
+        let html = '';
+        
+        if (filteredInstitutes.length === 0) {
+            html = `
+                <div class="info-card">
+                    <p>কোন ইনস্টিটিউট পাওয়া যায়নি।</p>
+                    <button class="secondary-btn" onclick="goToPage('page-register-institute')">
+                        <i class="fa-solid fa-plus"></i> নতুন ইনস্টিটিউট যোগ করুন
+                    </button>
+                </div>
+            `;
+        } else {
+            filteredInstitutes.forEach(institute => {
+                const badge = institute.type === 'gov' ? 
+                    '<span class="gov-badge">সরকারি</span>' : 
+                    '<span class="non-gov-badge">বেসরকারি</span>';
+                
+                html += `
+                    <div class="institute-card" onclick="viewInstituteDetail('${institute.id}')">
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            ${institute.logo ? `<img src="${institute.logo}" class="logo" alt="${institute.name}">` : '<div style="width: 60px; height: 60px; background: #f0f0f0; border-radius: 8px; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-school" style="font-size: 24px; color: #ccc;"></i></div>'}
+                            <h3 style="color: var(--primary-color); margin: 0 0 0 10px; flex: 1;">
+                                ${institute.name} ${badge}
+                            </h3>
+                        </div>
+                        <p><strong>ঠিকানা:</strong> ${institute.address}, ${institute.district}</p>
+                        <p><strong>ফোন:</strong> ${institute.phone}</p>
+                        <p><strong>স্থাপিত:</strong> ${institute.established}</p>
+                    </div>
+                `;
+            });
+            
+            // নতুন ইনস্টিটিউট যোগ করার বাটন
+            html += `
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="secondary-btn" onclick="goToPage('page-register-institute')">
+                        <i class="fa-solid fa-plus"></i> নতুন ইনস্টিটিউট যোগ করুন
+                    </button>
+                </div>
+            `;
+        }
+        
+        institutesList.innerHTML = html;
+    }
+
+    // ১০. জেলা ড্রপডাউন পপুলেট করার ফাংশন
+    function populateDistrictDropdown() {
+        const districtDropdown = document.getElementById('reg-district');
+        districtDropdown.innerHTML = '<option value="">জেলা নির্বাচন করুন</option>';
+        
+        districts.forEach(district => {
+            const option = document.createElement('option');
+            option.value = district;
+            option.textContent = district;
+            districtDropdown.appendChild(option);
+        });
+    }
+
+    // ১১. নতুন ইনস্টিটিউট রেজিস্ট্রেশন ফাংশন
+    function registerInstitute() {
+        const name = document.getElementById('reg-name').value.trim();
+        const type = document.getElementById('reg-type').value;
+        const address = document.getElementById('reg-address').value.trim();
+        const district = document.getElementById('reg-district').value;
+        const phone = document.getElementById('reg-phone').value.trim();
+        const email = document.getElementById('reg-email').value.trim();
+        const website = document.getElementById('reg-website').value.trim();
+        const established = document.getElementById('reg-established').value;
+        const logoFile = document.getElementById('reg-logo').files[0];
+        
+        const messageDiv = document.getElementById('reg-message');
+        
+        // ভ্যালিডেশন
+        if (!name || !address || !district || !phone || !email || !established) {
+            messageDiv.textContent = "অনুগ্রহ করে সবগুলো প্রয়োজনীয় তথ্য পূরণ করুন";
+            messageDiv.className = "notification error";
+            messageDiv.style.display = 'block';
+            return;
+        }
+        
+        // ইউনিক আইডি জেনারেট করা
+        const newId = 'inst_' + Date.now();
+        
+        // র‍্যান্ডম কোড জেনারেট করা (5000-9999 এর মধ্যে)
+        const newCode = Math.floor(5000 + Math.random() * 5000).toString();
+        
+        // লোগো প্রসেসিং
+        let logoData = null;
+        if (logoFile) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                logoData = e.target.result;
+                completeRegistration(newId, newCode, name, type, address, district, phone, email, website, established, logoData);
+            };
+            reader.readAsDataURL(logoFile);
+        } else {
+            completeRegistration(newId, newCode, name, type, address, district, phone, email, website, established, null);
+        }
+    }
+
+    function completeRegistration(id, code, name, type, address, district, phone, email, website, established, logo) {
+        // নতুন ইনস্টিটিউট অবজেক্ট তৈরি
+        const newInstitute = {
+            id: id,
+            name: name,
+            code: code,
+            type: type,
+            address: address,
+            district: district,
+            phone: phone,
+            email: email,
+            website: website || "N/A",
+            established: established,
+            logo: logo
+        };
+        
+        // বেসরকারি ইনস্টিটিউট তালিকায় যোগ
+        privatePolytechnics.push(newInstitute);
+        
+        // লোকাল স্টোরেজে সেভ
+        localStorage.setItem('privatePolytechnics', JSON.stringify(privatePolytechnics));
+        
+        // সাকসেস মেসেজ
+        const messageDiv = document.getElementById('reg-message');
+        messageDiv.innerHTML = `
+            <h4>রেজিস্ট্রেশন সফল!</h4>
+            <p><strong>প্রতিষ্ঠানের নাম:</strong> ${name}</p>
+            <p><strong>আপনার লগইন কোড:</strong> <span style="color: var(--success-color); font-weight: bold;">${code}</span></p>
+            <p style="color: red; font-size: 12px;">এই কোডটি সংরক্ষণ করুন, এটি দিয়ে আপনি লগইন করতে পারবেন</p>
+            <button class="secondary-btn" onclick="goToPage('page-admin-login')" style="margin-top: 10px;">
+                এখনই লগইন করুন
+            </button>
+        `;
+        messageDiv.className = "notification success";
+        messageDiv.style.display = 'block';
+        
+        // ফর্ম ক্লিয়ার
+        document.getElementById('reg-name').value = '';
+        document.getElementById('reg-address').value = '';
+        document.getElementById('reg-phone').value = '';
+        document.getElementById('reg-email').value = '';
+        document.getElementById('reg-website').value = '';
+        document.getElementById('reg-established').value = '';
+        document.getElementById('reg-logo').value = '';
+        
+        // অ্যাডমিন লগইন পেজের ড্রপডাউন আপডেট
+        populateAdminInstituteDropdown();
+    }
+
+    // ১২. ইনস্টিটিউট ডিটেইল ভিউ ফাংশন
+    function viewInstituteDetail(instituteId) {
+        const allInstitutes = getAllInstitutes();
+        const institute = allInstitutes.find(inst => inst.id === instituteId);
+        
+        if (institute) {
+            currentInstitute = institute;
+            
+            // হেডার আপডেট
+            document.getElementById('institute-detail-title').textContent = institute.name;
+            
+            // লোগো দেখানো
+            const logoContainer = document.getElementById('institute-logo-container');
+            if (institute.logo) {
+                logoContainer.innerHTML = `<img src="${institute.logo}" class="logo" alt="${institute.name}">`;
+            } else {
+                logoContainer.innerHTML = '<div style="width: 100px; height: 100px; background: #f0f0f0; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto;"><i class="fa-solid fa-school" style="font-size: 40px; color: #ccc;"></i></div>';
+            }
+            
+            // ইনস্টিটিউট তথ্য দেখানো
+            const badge = institute.type === 'gov' ? 
+                '<span class="gov-badge">সরকারি</span>' : 
+                '<span class="non-gov-badge">বেসরকারি</span>';
+            
+            document.getElementById('institute-detail-info').innerHTML = `
+                <div class="contact-card">
+                    <h3 style="color: var(--primary-color); margin-top: 0;">
+                        ${institute.name} ${badge}
+                    </h3>
+                    <p><strong>ঠিকানা:</strong> ${institute.address}, ${institute.district}</p>
+                    <p><strong>ফোন:</strong> ${institute.phone}</p>
+                    <p><strong>ইমেইল:</strong> ${institute.email}</p>
+                    <p><strong>ওয়েবসাইট:</strong> ${institute.website}</p>
+                    <p><strong>স্থাপিত:</strong> ${institute.established}</p>
+                </div>
+            `;
+            
+            // কন্টেন্ট কন্টেইনার ক্লিয়ার
+            document.getElementById('institute-content-container').innerHTML = '';
+            
+            goToPage('page-institute-detail');
+        }
+    }
+
+    // ১৩. ইনস্টিটিউট শিক্ষক দেখানো
+    function showInstituteTeachers() {
+        const container = document.getElementById('institute-content-container');
+        
+        // শিক্ষক ডাটা লোড করা
+        const instituteTeachers = JSON.parse(localStorage.getItem(`teachers_${currentInstitute.id}`)) || [];
+        
+        let html = '<h3 style="color: var(--primary-color); margin-top: 0;">শিক্ষকবৃন্দ</h3>';
+        
+        if (instituteTeachers.length === 0) {
+            html += '<p>এই প্রতিষ্ঠানের জন্য এখনও কোনো শিক্ষক যোগ করা হয়নি।</p>';
+        } else {
+            instituteTeachers.forEach(teacher => {
+                html += `
+                    <div class="teacher-card">
+                        <div style="display: flex; align-items: center;">
+                            ${teacher.photo ? `<img src="${teacher.photo}" class="avatar" alt="${teacher.name}">` : '<div style="width: 60px; height: 60px; background: #f0f0f0; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;"><i class="fa-solid fa-user" style="font-size: 24px; color: #ccc;"></i></div>'}
+                            <div>
+                                <h4 style="color: var(--primary-color); margin: 0;">${teacher.name}</h4>
+                                <p style="margin: 5px 0;"><strong>বিভাগ:</strong> ${teacher.dept}</p>
+                                <p style="margin: 5px 0;"><strong>পদবী:</strong> ${teacher.position}</p>
+                            </div>
+                        </div>
+                        <p style="margin: 10px 0 0 0;"><strong>ইমেইল:</strong> ${teacher.email}</p>
+                        <p style="margin: 5px 0;"><strong>ফোন:</strong> ${teacher.phone}</p>
+                    </div>
+                `;
+            });
+        }
+        
+        container.innerHTML = html;
+    }
+
+    // ১৪. ইনস্টিটিউট নিউজ দেখানো
+    function showInstituteNews() {
+        const container = document.getElementById('institute-content-container');
+        
+        // নিউজ ডাটা লোড করা
+        const instituteNews = JSON.parse(localStorage.getItem(`news_${currentInstitute.id}`)) || [];
+        
+        let html = '<h3 style="color: var(--primary-color); margin-top: 0;">নিউজ</h3>';
+        
+        if (instituteNews.length === 0) {
+            html += '<p>এই প্রতিষ্ঠানের জন্য এখনও কোনো নিউজ পোস্ট করা হয়নি।</p>';
+        } else {
+            // তারিখ অনুসারে সাজানো (নতুন থেকে পুরানো)
+            instituteNews.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            instituteNews.forEach(news => {
+                html += `
+                    <div class="news-card">
+                        <div class="news-date">${formatDate(news.date)}</div>
+                        <div class="news-title">${news.title}</div>
+                        ${news.image ? `<img src="${news.image}" class="news-image" alt="${news.title}">` : ''}
+                        <p>${news.content}</p>
+                    </div>
+                `;
+            });
+        }
+        
+        container.innerHTML = html;
+    }
+
+    // ১৫. তারিখ ফরম্যাট করার ফাংশন
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return date.toLocaleDateString('bn-BD', options);
+    }
+
+    // ১৬. অ্যাডমিন লগইন সিস্টেম
+    function adminLogin() {
+        const instituteName = document.getElementById('admin-institute').value;
+        const code = document.getElementById('admin-pass').value;
+        const errorDiv = document.getElementById('login-error');
+        
+        if (!instituteName) {
+            errorDiv.textContent = "অনুগ্রহ করে একটি ইনস্টিটিউট নির্বাচন করুন";
+            errorDiv.style.display = 'block';
+            return;
+        }
+        
+        // লোডিং ইফেক্ট দেখানো
+        const loginBtn = document.querySelector('#page-admin-login .primary-btn');
+        const originalText = loginBtn.innerHTML;
+        loginBtn.innerHTML = '<div class="spinner" style="width: 20px; height: 20px; margin: 0 auto;"></div>';
+        
+        // সিমুলেটেড লগইন প্রসেস
+        setTimeout(() => {
+            const allInstitutes = getAllInstitutes();
+            const institute = allInstitutes.find(inst => inst.name === instituteName);
+            
+            if(institute && code === institute.code) { 
+                currentAdminInstitute = institute;
+                document.getElementById('admin-title').textContent = institute.name + ' - অ্যাডমিন ড্যাশবোর্ড';
+                goToPage('page-admin-dashboard');
+                document.getElementById('admin-pass').value = '';
+                errorDiv.style.display = 'none';
+            } else {
+                errorDiv.textContent = "ভুল কোড! অনুগ্রহ করে আবার চেষ্টা করুন।";
+                errorDiv.style.display = 'block';
+            }
+            loginBtn.innerHTML = originalText;
+        }, 1000);
+    }
+
+    // ১৭. অ্যাডমিন ইনস্টিটিউট ড্রপডাউন পপুলেট
+    function populateAdminInstituteDropdown() {
+        const instituteDropdown = document.getElementById('admin-institute');
+        const allInstitutes = getAllInstitutes();
+        
+        // বিদ্যমান অপশনগুলি রাখুন (প্রথম অপশন)
+        const firstOption = instituteDropdown.options[0];
+        instituteDropdown.innerHTML = '';
+        instituteDropdown.appendChild(firstOption);
+        
+        // সব ইনস্টিটিউট যোগ করুন
+        allInstitutes.forEach(institute => {
+            const option = document.createElement('option');
+            option.value = institute.name;
+            option.textContent = institute.name;
+            instituteDropdown.appendChild(option);
+        });
+    }
+
+    // ১৮. ডিপার্টমেন্ট ব্যবস্থাপনা
+    function openDept(deptName) {
+        currentDept = deptName;
+        document.getElementById('dept-title').textContent = deptName + ' টেকনোলজি';
+        goToPage('page-dept-detail');
+    }
+
+    function showDeptInfo() {
+        const container = document.getElementById('dept-info-container');
+        container.innerHTML = `
+            <div class="info-card">
+                <h3 style="color: var(--primary-color); margin-top:0;">${currentDept} টেকনোলজি পরিচিতি</h3>
+                <p>${getDeptDescription(currentDept)}</p>
+                <p><strong>কোর্সের মেয়াদ:</strong> ৪ বছর (৮ সেমিস্টার)</p>
+                <p><strong>সিট সংখ্যা:</strong> ৫০</p>
+                <p><strong>কোর্স ফি:</strong> প্রতি সেমিস্টার ৫,০০০ টাকা</p>
+            </div>
+        `;
+        container.style.display = 'block';
+        
+        // স্ক্রল টু ভিউ
+        container.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function showTeachers() {
+        const container = document.getElementById('dept-info-container');
+        container.innerHTML = `
+            <div class="info-card">
+                <h3 style="color: var(--primary-color); margin-top:0;">${currentDept} বিভাগের শিক্ষকবৃন্দ</h3>
+                <ul style="text-align: left; padding-left: 20px;">
+                    <li>জনাব মো: রফিকুল ইসলাম - প্রধাণ শিক্ষক</li>
+                    <li>জনাবা নুসরাত জাহান - সহকারী শিক্ষক</li>
+                    <li>জনাব মো: সেলিম রেজা - সহকারী শিক্ষক</li>
+                    <li>জনাব মো: কামরুল হাসান - জুনিয়র শিক্ষক</li>
+                </ul>
+            </div>
+        `;
+        container.style.display = 'block';
+        container.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function showContactInfo() {
+        const container = document.getElementById('dept-info-container');
+        container.innerHTML = `
+            <div class="info-card">
+                <h3 style="color: var(--primary-color); margin-top:0;">যোগাযোগ তথ্য</h3>
+                <p><strong>বিভাগীয় প্রধান:</strong> জনাব মো: রফিকুল ইসলাম</p>
+                <p><strong>মোবাইল:</strong> ০১৭১২-৩৪৫৬৭৮</p>
+                <p><strong>ইমেইল:</strong> ${currentDept.toLowerCase()}@polytechnic.edu.bd</p>
+                <p><strong>অফিস কক্ষ:</strong> প্রধান ভবন, ২য় তলা, রুম নং- ২০৩</p>
+            </div>
+        `;
+        container.style.display = 'block';
+        container.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function getDeptDescription(deptName) {
+        const descriptions = {
+            'সিভিল': 'সিভিল টেকনোলজি বিভাগ নির্মাণ শিল্পের জন্য দক্ষ টেকনিশিয়ান তৈরি করে। এই বিভাগে নির্মাণ সামগ্রী, স্ট্রাকচারাল ডিজাইন, এস্টিমেটিং এবং কন্সট্রাকশন ম্যানেজমেন্ট সম্পর্কে শেখানো হয়।',
+            'কম্পিউটার': 'কম্পিউটার টেকনোলজি বিভাগে সফটওয়্যার ডেভেলপমেন্ট, নেটওয়ার্কিং, ডাটাবেস ম্যানেজমেন্ট এবং ওয়েব ডিজাইন সম্পর্কে হাতে-কলমে শিক্ষা দেওয়া হয়।',
+            'ইলেকট্রিক্যাল': 'ইলেকট্রিক্যাল টেকনোলজি বিভাগে বৈদ্যুতিক সিস্টেমের ডিজাইন, ইনস্টলেশন এবং রক্ষণাবেক্ষণ সম্পর্কে বিস্তারিত শেখানো হয়।',
+            'ইলেকট্রনিক্স': 'ইলেকট্রনিক্স টেকনোলজি বিভাগে ইলেকট্রনিক ডিভাইস, সার্কিট ডিজাইন এবং ট্রাবলশুটিং সম্পর্কে গভীর জ্ঞান প্রদান করা হয়।',
+            'মেকানিক্যাল': 'মেকানিক্যাল টেকনোলজি বিভাগে যন্ত্রপাতির ডিজাইন, উৎপাদন এবং রক্ষণাবেক্ষণ সম্পর্কে হাতে-কলমে প্রশিক্ষণ দেওয়া হয়।',
+            'পাওয়ার': 'পাওয়ার টেকনোলজি বিভাগে বিদ্যুৎ উৎপাদন, ট্রান্সমিশন এবং বিতরণ সিস্টেম সম্পর্কে বিশেষজ্ঞতা তৈরি করা হয়।'
+        };
+        
+        return descriptions[deptName] || 'এই বিভাগ সম্পর্কে বিস্তারিত তথ্য শীঘ্রই যোগ করা হবে।';
+    }
+
+    function backToDept() {
+        if (currentDept) {
+            goToPage('page-dept-detail');
+        } else {
+            goToPage('page-home');
+        }
+    }
+
+    // ১৯. শিক্ষক লোড করার ফাংশন
+    function loadTeachers() {
+        const deptFilter = document.getElementById('teacher-dept').value;
+        const teachersList = document.getElementById('teachers-list');
+        
+        // ডিফল্ট শিক্ষক ডাটা
+        const allTeachers = [
+            { name: "জনাব মো: রফিকুল ইসলাম", dept: "সিভিল", position: "প্রধান শিক্ষক", phone: "০১৭১২-৩৪৫৬৭৮", email: "rafiq@example.com" },
+            { name: "জনাবা নুসরাত জাহান", dept: "সিভিল", position: "সহকারী শিক্ষক", phone: "০১৮১২-৪৫৬৭৮৯", email: "nusrat@example.com" },
+            { name: "জনাব মো: সেলিম রেজা", dept: "কম্পিউটার", position: "প্রধান শিক্ষক", phone: "০১৯১২-৫৬৭৮৯০", email: "selim@example.com" },
+            { name: "জনাবা ফারহানা আক্তার", dept: "কম্পিউটার", position: "সহকারী শিক্ষক", phone: "০১৬১২-২৩৪৫৬৭", email: "farhana@example.com" },
+            { name: "জনাব মো: কামরুল হাসান", dept: "ইলেকট্রিক্যাল", position: "প্রধান শিক্ষক", phone: "০১৫১২-১২৩৪৫৬", email: "kamrul@example.com" },
+            { name: "জনাব মো: জাহিদ হাসান", dept: "ইলেকট্রিক্যাল", position: "সহকারী শিক্ষক", phone: "০১৩১২-৯৮৭৬৫৪", email: "jahid@example.com" },
+            { name: "জনাবা শারমিন আক্তার", dept: "ইলেকট্রনিক্স", position: "প্রধান শিক্ষক", phone: "০১৪১২-৮৭৬৫৪৩", email: "sharmin@example.com" },
+            { name: "জনাব মো: সোহেল রানা", dept: "ইলেকট্রনিক্স", position: "সহকারী শিক্ষক", phone: "০১২১২-৭৬৫৪৩২", email: "sohel@example.com" },
+            { name: "জনাব মো: শহিদুল ইসলাম", dept: "মেকানিক্যাল", position: "প্রধান শিক্ষক", phone: "০১১১২-৬৫৪৩২১", email: "shahidul@example.com" },
+            { name: "জনাব মো: রাশেদুল হক", dept: "মেকানিক্যাল", position: "সহকারী শিক্ষক", phone: "০১০১২-৫৪৩২১০", email: "rashed@example.com" },
+            { name: "জনাবা সাবিনা ইয়াসমিন", dept: "পাওয়ার", position: "প্রধান শিক্ষক", phone: "০১৭১৩-১২৩৪৫৬", email: "sabina@example.com" },
+            { name: "জনাব মো: মঞ্জুরুল ইসলাম", dept: "পাওয়ার", position: "সহকারী শিক্ষক", phone: "০১৮১৩-২৩৪৫৬৭", email: "manjur@example.com" }
+        ];
+        
+        let filteredTeachers = allTeachers;
+        
+        if (deptFilter) {
+            filteredTeachers = allTeachers.filter(teacher => teacher.dept === deptFilter);
+        }
+        
+        let html = '';
+        
+        if (filteredTeachers.length === 0) {
+            html = '<p>কোন শিক্ষক পাওয়া যায়নি</p>';
+        } else {
+            filteredTeachers.forEach(teacher => {
+                html += `
+                    <div class="teacher-card">
+                        <h4 style="color: var(--primary-color); margin-top: 0;">${teacher.name}</h4>
+                        <p><strong>বিভাগ:</strong> ${teacher.dept}</p>
+                        <p><strong>পদবী:</strong> ${teacher.position}</p>
+                        <p><strong>ফোন:</strong> ${teacher.phone}</p>
+                        <p><strong>ইমেইল:</strong> ${teacher.email}</p>
+                    </div>
+                `;
+            });
+        }
+        
+        teachersList.innerHTML = html;
+    }
+
+    // ২০. যোগাযোগ তথ্য লোড করার ফাংশন
+    function loadContactInfo() {
+        const contactInfo = document.getElementById('contact-info');
+        
+        contactInfo.innerHTML = `
+            <div class="contact-card">
+                <h3 style="color: var(--primary-color); margin-top: 0;">বাংলাদেশ কারিগরি শিক্ষা বোর্ড</h3>
+                <p><strong>ঠিকানা:</strong> শেরেবাংলা নগর, আগারগাঁও, ঢাকা-১২০৭</p>
+                <p><strong>ফোন:</strong> ০২-৫৫০০১২৩৪</p>
+                <p><strong>ইমেইল:</strong> info@techedu.gov.bd</p>
+                <p><strong>ওয়েবসাইট:</strong> www.bteb.gov.bd</p>
+                
+                <h4 style="margin-top: 20px;">জরুরি যোগাযোগ:</h4>
+                <p><strong>হেল্পলাইন:</strong> ১৬৩৪৫</p>
+                <p><strong>ফ্যাক্স:</strong> ০২-৫৫০০১২৩৫</p>
+                
+                <h4 style="margin-top: 20px;">অফিস সময়:</h4>
+                <p>শনিবার - বুধবার: সকাল ৯:০০ - বিকাল ৫:০০<br>বৃহস্পতিবার: সকাল ৯:০০ - দুপুর ১:০০<br>শুক্রবার: সাপ্তাহিক ছুটি</p>
+            </div>
+        `;
+    }
+
+    // ২১. ডাটাবেস হ্যান্ডলিং (LocalStorage ব্যবহার করে যাতে ডাটা সেভ থাকে)
+    let defaultData = [
+        { name: "নমুনা ছাত্র", roll: 100, dept: "কম্পিউটার", semester: "1", result: "3.50", photo: null },
+        { name: "আনিকা ইসলাম", roll: 101, dept: "কম্পিউটার", semester: "3", result: "3.75", photo: null },
+        { name: "রফিকুল ইসলাম", roll: 201, dept: "সিভিল", semester: "2", result: "3.80", photo: null },
+        { name: "সাদিয়া আক্তার", roll: 105, dept: "কম্পিউটার", semester: "4", result: "3.90", photo: null }
+    ];
+
+    let studentsDB = JSON.parse(localStorage.getItem('studentData')) || defaultData;
+
+    function saveToLocalStorage() {
+        localStorage.setItem('studentData', JSON.stringify(studentsDB));
+    }
+
+    // ২২. শিক্ষার্থী সার্চ ফাংশন
+    function searchStudent() {
+        const rollInput = parseInt(document.getElementById('search-roll').value);
+        const resultDiv = document.getElementById('search-result');
+        const loader = document.getElementById('search-loader');
+        
+        if(!rollInput) {
+            resultDiv.innerHTML = `
+                <div class="notification error">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <p>দয়া করে একটি রোল নম্বর দিন!</p>
+                </div>
+            `;
+            return;
+        }
+        
+        // লোডিং দেখানো
+        loader.style.display = 'block';
+        resultDiv.innerHTML = '';
+        
+        // সিমুলেটেড ডিলে (বাস্তব অ্যাপে এটি সরান)
+        setTimeout(() => {
+            loader.style.display = 'none';
+            
+            // ডাটাবেস থেকে খোঁজা
+            const student = studentsDB.find(s => s.roll === rollInput);
+
+            if(student) {
+                resultDiv.innerHTML = `
+                    <div class="info-card">
+                        <div style="text-align: center;">
+                            ${student.photo ? `<img src="${student.photo}" class="avatar" alt="${student.name}">` : '<div style="width: 80px; height: 80px; background: #f0f0f0; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;"><i class="fa-solid fa-user" style="font-size: 30px; color: #ccc;"></i></div>'}
+                        </div>
+                        <h3 style="color: var(--success-color); margin-top:0;">তথ্য পাওয়া গেছে <i class="fa-solid fa-check-circle"></i></h3>
+                        <p><strong>নাম:</strong> ${student.name}</p>
+                        <p><strong>রোল:</strong> ${student.roll}</p>
+                        <p><strong>বিভাগ:</strong> ${student.dept}</p>
+                        <p><strong>সেমিস্টার:</strong> ${student.semester || "1"}ম</p>
+                        <p><strong>রেজাল্ট:</strong> <span style="font-size:18px; font-weight:bold; color:#d35400;">${student.result}</span></p>
+                        <p style="margin-top: 15px; font-style: italic; color: #7f8c8d;">${getResultMessage(student.result)}</p>
+                    </div>
+                `;
+            } else {
+                resultDiv.innerHTML = `
+                    <div class="notification error">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <p>দুঃখিত! রোল নং ${rollInput} এর কোনো তথ্য পাওয়া যায়নি।</p>
+                        <p>দয়া করে রোল নম্বরটি চেক করে আবার চেষ্টা করুন।</p>
+                    </div>
+                `;
+            }
+        }, 800);
+    }
+
+    function getResultMessage(result) {
+        const cgpa = parseFloat(result);
+        if (cgpa >= 4.00) {
+            return "অভিনন্দন! আপনি অসাধারণ ফলাফল করেছেন।";
+        } else if (cgpa >= 3.75) {
+            return "খুব ভালো ফলাফল! আপনি ভালো করছেন।";
+        } else if (cgpa >= 3.50) {
+            return "ভালো ফলাফল! আরও উন্নতি করুন।";
+        } else if (cgpa >= 3.00) {
+            return "মোটামুটি ফলাফল। আরও চেষ্টা করুন।";
+        } else {
+            return "আপনার আরও পড়াশোনা প্রয়োজন।";
+        }
+    }
+
+    // ২৩. রেজাল্ট দেখানোর ফাংশন
+    function showResults() {
+        const rollInput = parseInt(document.getElementById('result-roll').value);
+        const semester = document.getElementById('result-semester').value;
+        const resultDisplay = document.getElementById('result-display');
+        
+        if(!rollInput) {
+            resultDisplay.innerHTML = `
+                <div class="notification error">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <p>দয়া করে একটি রোল নম্বর দিন!</p>
+                </div>
+            `;
+            return;
+        }
+        
+        // ডাটাবেস থেকে খোঁজা
+        const student = studentsDB.find(s => s.roll === rollInput);
+
+        if(student) {
+            // সিমুলেটেড রেজাল্ট ডাটা
+            const semesterNames = {
+                '1': '১ম সেমিস্টার',
+                '2': '২য় সেমিস্টার', 
+                '3': '৩য় সেমিস্টার',
+                '4': '৪র্থ সেমিস্টার',
+                '5': '৫ম সেমিস্টার',
+                '6': '৬ষ্ঠ সেমিস্টার',
+                '7': '৭ম সেমিস্টার',
+                '8': '৮ম সেমিস্টার'
+            };
+            
+            const semesterGPA = (3.0 + Math.random() * 1.5).toFixed(2);
+            
+            resultDisplay.innerHTML = `
+                <div class="info-card">
+                    <h3 style="color: var(--success-color); margin-top:0;">${semesterNames[semester]} রেজাল্ট</h3>
+                    <p><strong>নাম:</strong> ${student.name}</p>
+                    <p><strong>রোল:</strong> ${student.roll}</p>
+                    <p><strong>বিভাগ:</strong> ${student.dept}</p>
+                    <p><strong>সেমিস্টার:</strong> ${semesterNames[semester]}</p>
+                    <p><strong>সিজিপিএ:</strong> <span style="font-size:18px; font-weight:bold; color:#d35400;">${semesterGPA}</span></p>
+                    <p><strong>গ্রেড:</strong> ${getGradeFromGPA(semesterGPA)}</p>
+                    <p><strong>স্ট্যাটাস:</strong> ${parseFloat(semesterGPA) >= 2.0 ? 'পাস' : 'ফেল'}</p>
+                </div>
+            `;
+        } else {
+            resultDisplay.innerHTML = `
+                <div class="notification error">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <p>দুঃখিত! রোল নং ${rollInput} এর কোনো তথ্য পাওয়া যায়নি।</p>
+                </div>
+            `;
+        }
+    }
+
+    function getGradeFromGPA(gpa) {
+        const numGPA = parseFloat(gpa);
+        if (numGPA >= 4.00) return 'A+';
+        if (numGPA >= 3.75) return 'A';
+        if (numGPA >= 3.50) return 'A-';
+        if (numGPA >= 3.25) return 'B+';
+        if (numGPA >= 3.00) return 'B';
+        if (numGPA >= 2.75) return 'B-';
+        if (numGPA >= 2.50) return 'C+';
+        if (numGPA >= 2.25) return 'C';
+        if (numGPA >= 2.00) return 'D';
+        return 'F';
+    }
+
+    // ২৪. অ্যাডমিন ফাংশন
+    function logout() {
+        currentAdminInstitute = '';
+        goToPage('page-home');
+    }
+
+    // ট্যাব ব্যবস্থাপনা
+    function openTab(tabName) {
+        // সব ট্যাব লুকাও
+        document.querySelectorAll('.tab-content').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        
+        // সব ট্যাব বাটন নিষ্ক্রিয় করো
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        // নির্বাচিত ট্যাব দেখাও
+        document.getElementById(tabName).classList.add('active');
+        
+        // নির্বাচিত ট্যাব বাটন সক্রিয় করো
+        event.target.classList.add('active');
+    }
+
+    // শিক্ষার্থী যোগ করার ফাংশন
+    function addStudentData() {
+        const name = document.getElementById('new-name').value.trim();
+        const roll = document.getElementById('new-roll').value;
+        const dept = document.getElementById('new-dept').value;
+        const semester = document.getElementById('new-semester').value;
+        const result = document.getElementById('new-result').value.trim();
+        const photoFile = document.getElementById('new-photo').files[0];
+
+        if(name && roll && result) {
+            // চেক করুন রোল নম্বরটি ইতিমধ্যে আছে কিনা
+            const existingStudent = studentsDB.find(s => s.roll === parseInt(roll));
+            if(existingStudent) {
+                alert('এই রোল নম্বরটি ইতিমধ্যে রয়েছে!');
+                return;
+            }
+
+            // ছবি প্রসেসিং
+            if (photoFile) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const newStudent = { 
+                        name: name, 
+                        roll: parseInt(roll), 
+                        dept: dept, 
+                        semester: semester,
+                        result: result,
+                        photo: e.target.result
+                    };
+                    
+                    studentsDB.push(newStudent);
+                    saveToLocalStorage();
+
+                    // UI আপডেট
+                    const msgDiv = document.getElementById('save-msg');
+                    msgDiv.style.display = 'block';
+                    msgDiv.textContent = "সফলভাবে সেভ হয়েছে!";
+                    setTimeout(() => msgDiv.style.display = 'none', 2000);
+                    
+                    // ইনপুট ক্লিয়ার
+                    document.getElementById('new-name').value = '';
+                    document.getElementById('new-roll').value = '';
+                    document.getElementById('new-result').value = '';
+                    document.getElementById('new-photo').value = '';
+                    
+                    renderAdminList();
+                };
+                reader.readAsDataURL(photoFile);
+            } else {
+                const newStudent = { 
+                    name: name, 
+                    roll: parseInt(roll), 
+                    dept: dept, 
+                    semester: semester,
+                    result: result,
+                    photo: null
+                };
+                
+                studentsDB.push(newStudent);
+                saveToLocalStorage();
+
+                // UI আপডেট
+                const msgDiv = document.getElementById('save-msg');
+                msgDiv.style.display = 'block';
+                msgDiv.textContent = "সফলভাবে সেভ হয়েছে!";
+                setTimeout(() => msgDiv.style.display = 'none', 2000);
+                
+                // ইনপুট ক্লিয়ার
+                document.getElementById('new-name').value = '';
+                document.getElementById('new-roll').value = '';
+                document.getElementById('new-result').value = '';
+                document.getElementById('new-photo').value = '';
+                
+                renderAdminList();
+            }
+        } else {
+            alert("সবগুলো তথ্য সঠিকভাবে পূরণ করুন!");
+        }
+    }
+
+    function renderAdminList() {
+        if(studentsDB.length === 0) {
+            document.getElementById('admin-list').innerHTML = "<p>কোনো তথ্য নেই</p>";
+            return;
+        }
+        
+        let html = '<table><tr><th>রোল</th><th>নাম</th><th>বিভাগ</th><th>সেমিস্টার</th><th>রেজাল্ট</th><th>অ্যাকশন</th></tr>';
+        
+        // ডাটা উল্টো করে দেখানো (শেষেরটা আগে)
+        studentsDB.slice().reverse().forEach((std, index) => {
+            html += `<tr>
+                <td>${std.roll}</td>
+                <td>${std.name}</td>
+                <td>${std.dept}</td>
+                <td>${std.semester || "1"}ম</td>
+                <td>${std.result}</td>
+                <td><button class="secondary-btn" style="padding: 3px 8px; font-size: 12px; background-color: #c62828;" onclick="deleteStudent(${std.roll})">মুছুন</button></td>
+            </tr>`;
+        });
+        
+        html += '</table>';
+        document.getElementById('admin-list').innerHTML = html;
+    }
+
+    // শিক্ষক যোগ করার ফাংশন
+    function addTeacherData() {
+        const name = document.getElementById('teacher-name').value.trim();
+        const dept = document.getElementById('teacher-dept-admin').value;
+        const position = document.getElementById('teacher-position').value.trim();
+        const email = document.getElementById('teacher-email').value.trim();
+        const phone = document.getElementById('teacher-phone').value.trim();
+        const photoFile = document.getElementById('teacher-photo').files[0];
+
+        if(name && dept && position && email && phone) {
+            // ছবি প্রসেসিং
+            if (photoFile) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const newTeacher = { 
+                        name: name, 
+                        dept: dept, 
+                        position: position,
+                        email: email,
+                        phone: phone,
+                        photo: e.target.result
+                    };
+                    
+                    saveTeacherData(newTeacher);
+
+                    // UI আপডেট
+                    const msgDiv = document.getElementById('teacher-save-msg');
+                    msgDiv.style.display = 'block';
+                    msgDiv.textContent = "সফলভাবে সেভ হয়েছে!";
+                    setTimeout(() => msgDiv.style.display = 'none', 2000);
+                    
+                    // ইনপুট ক্লিয়ার
+                    document.getElementById('teacher-name').value = '';
+                    document.getElementById('teacher-position').value = '';
+                    document.getElementById('teacher-email').value = '';
+                    document.getElementById('teacher-phone').value = '';
+                    document.getElementById('teacher-photo').value = '';
+                    
+                    renderTeacherAdminList();
+                };
+                reader.readAsDataURL(photoFile);
+            } else {
+                const newTeacher = { 
+                    name: name, 
+                    dept: dept, 
+                    position: position,
+                    email: email,
+                    phone: phone,
+                    photo: null
+                };
+                
+                saveTeacherData(newTeacher);
+
+                // UI আপডেট
+                const msgDiv = document.getElementById('teacher-save-msg');
+                msgDiv.style.display = 'block';
+                msgDiv.textContent = "সফলভাবে সেভ হয়েছে!";
+                setTimeout(() => msgDiv.style.display = 'none', 2000);
+                
+                // ইনপুট ক্লিয়ার
+                document.getElementById('teacher-name').value = '';
+                    document.getElementById('teacher-position').value = '';
+                    document.getElementById('teacher-email').value = '';
+                    document.getElementById('teacher-phone').value = '';
+                    document.getElementById('teacher-photo').value = '';
+                    
+                    renderTeacherAdminList();
+                }
+            } else {
+                alert("সবগুলো তথ্য সঠিকভাবে পূরণ করুন!");
+            }
+        }
+
+        function saveTeacherData(teacher) {
+            if (!currentAdminInstitute || !currentAdminInstitute.id) return;
+            
+            const instituteTeachers = JSON.parse(localStorage.getItem(`teachers_${currentAdminInstitute.id}`)) || [];
+            instituteTeachers.push(teacher);
+            localStorage.setItem(`teachers_${currentAdminInstitute.id}`, JSON.stringify(instituteTeachers));
+        }
+
+        function renderTeacherAdminList() {
+            if (!currentAdminInstitute || !currentAdminInstitute.id) return;
+            
+            const instituteTeachers = JSON.parse(localStorage.getItem(`teachers_${currentAdminInstitute.id}`)) || [];
+            
+            if(instituteTeachers.length === 0) {
+                document.getElementById('teacher-admin-list').innerHTML = "<p>কোনো শিক্ষক তথ্য নেই</p>";
+                return;
+            }
+            
+            let html = '<table><tr><th>নাম</th><th>বিভাগ</th><th>পদবী</th><th>ইমেইল</th><th>অ্যাকশন</th></tr>';
+            
+            instituteTeachers.forEach((teacher, index) => {
+                html += `<tr>
+                    <td>${teacher.name}</td>
+                    <td>${teacher.dept}</td>
+                    <td>${teacher.position}</td>
+                    <td>${teacher.email}</td>
+                    <td><button class="secondary-btn" style="padding: 3px 8px; font-size: 12px; background-color: #c62828;" onclick="deleteTeacher(${index})">মুছুন</button></td>
+                </tr>`;
+            });
+            
+            html += '</table>';
+            document.getElementById('teacher-admin-list').innerHTML = html;
+        }
+
+        // শিক্ষক মুছার ফাংশন
+        function deleteTeacher(index) {
+            if(!currentAdminInstitute || !currentAdminInstitute.id) return;
+            
+            if(confirm(`আপনি কি এই শিক্ষকের তথ্য মুছে ফেলতে চান?`)) {
+                const instituteTeachers = JSON.parse(localStorage.getItem(`teachers_${currentAdminInstitute.id}`)) || [];
+                instituteTeachers.splice(index, 1);
+                localStorage.setItem(`teachers_${currentAdminInstitute.id}`, JSON.stringify(instituteTeachers));
+                renderTeacherAdminList();
+            }
+        }
+
+        // নিউজ যোগ করার ফাংশন
+        function addNews() {
+            const title = document.getElementById('news-title').value.trim();
+            const content = document.getElementById('news-content').value.trim();
+            const imageFile = document.getElementById('news-image').files[0];
+
+            if(title && content) {
+                // ছবি প্রসেসিং
+                if (imageFile) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const newNews = { 
+                            title: title, 
+                            content: content,
+                            image: e.target.result,
+                            date: new Date().toISOString()
+                        };
+                        
+                        saveNewsData(newNews);
+
+                        // UI আপডেট
+                        const msgDiv = document.getElementById('news-save-msg');
+                        msgDiv.style.display = 'block';
+                        msgDiv.textContent = "সফলভাবে পোস্ট হয়েছে!";
+                        setTimeout(() => msgDiv.style.display = 'none', 2000);
+                        
+                        // ইনপুট ক্লিয়ার
+                        document.getElementById('news-title').value = '';
+                        document.getElementById('news-content').value = '';
+                        document.getElementById('news-image').value = '';
+                        
+                        renderNewsAdminList();
+                    };
+                    reader.readAsDataURL(imageFile);
+                } else {
+                    const newNews = { 
+                        title: title, 
+                        content: content,
+                        image: null,
+                        date: new Date().toISOString()
+                    };
+                    
+                    saveNewsData(newNews);
+
+                    // UI আপডেট
+                    const msgDiv = document.getElementById('news-save-msg');
+                    msgDiv.style.display = 'block';
+                    msgDiv.textContent = "সফলভাবে পোস্ট হয়েছে!";
+                    setTimeout(() => msgDiv.style.display = 'none', 2000);
+                    
+                    // ইনপুট ক্লিয়ার
+                    document.getElementById('news-title').value = '';
+                    document.getElementById('news-content').value = '';
+                    document.getElementById('news-image').value = '';
+                    
+                    renderNewsAdminList();
+                }
+            } else {
+                alert("শিরোনাম এবং বিস্তারিত পূরণ করুন!");
+            }
+        }
+
+        function saveNewsData(news) {
+            if (!currentAdminInstitute || !currentAdminInstitute.id) return;
+            
+            const instituteNews = JSON.parse(localStorage.getItem(`news_${currentAdminInstitute.id}`)) || [];
+            instituteNews.push(news);
+            localStorage.setItem(`news_${currentAdminInstitute.id}`, JSON.stringify(instituteNews));
+        }
+
+        function renderNewsAdminList() {
+            if (!currentAdminInstitute || !currentAdminInstitute.id) return;
+            
+            const instituteNews = JSON.parse(localStorage.getItem(`news_${currentAdminInstitute.id}`)) || [];
+            
+            if(instituteNews.length === 0) {
+                document.getElementById('news-admin-list').innerHTML = "<p>কোনো নিউজ নেই</p>";
+                return;
+            }
+            
+            // তারিখ অনুসারে সাজানো (নতুন থেকে পুরানো)
+            instituteNews.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            let html = '';
+            
+            instituteNews.forEach((news, index) => {
+                html += `
+                    <div class="news-card">
+                        <div class="news-date">${formatDate(news.date)}</div>
+                        <div class="news-title">${news.title}</div>
+                        ${news.image ? `<img src="${news.image}" class="news-image" alt="${news.title}">` : ''}
+                        <p>${news.content}</p>
+                        <button class="secondary-btn" style="padding: 3px 8px; font-size: 12px; background-color: #c62828; margin-top: 10px;" onclick="deleteNews(${index})">মুছুন</button>
+                    </div>
+                `;
+            });
+            
+            document.getElementById('news-admin-list').innerHTML = html;
+        }
+
+        // নিউজ মুছার ফাংশন
+        function deleteNews(index) {
+            if(!currentAdminInstitute || !currentAdminInstitute.id) return;
+            
+            if(confirm(`আপনি কি এই নিউজ মুছে ফেলতে চান?`)) {
+                const instituteNews = JSON.parse(localStorage.getItem(`news_${currentAdminInstitute.id}`)) || [];
+                instituteNews.splice(index, 1);
+                localStorage.setItem(`news_${currentAdminInstitute.id}`, JSON.stringify(instituteNews));
+                renderNewsAdminList();
+            }
+        }
+
+        // শিক্ষার্থী মুছার ফাংশন
+        function deleteStudent(roll) {
+            if(confirm(`আপনি কি রোল নং ${roll} এর তথ্য মুছে ফেলতে চান?`)) {
+                studentsDB = studentsDB.filter(s => s.roll !== roll);
+                saveToLocalStorage();
+                renderAdminList();
+            }
+        }
+
+        // সব ডাটা ডিলিট করার অপশন (অ্যাডমিনের জন্য)
+        function clearAllData() {
+            if(confirm("আপনি কি সব ছাত্রের তথ্য মুছে ফেলতে চান? এটি পূর্বাবস্থায় ফেরানো যাবে না!")) {
+                studentsDB = [];
+                saveToLocalStorage();
+                renderAdminList();
+                alert("সব ডাটা মুছে ফেলা হয়েছে!");
+            }
+        }
+
+        // প্রতিষ্ঠানের তথ্য আপডেট
+        function updateInstituteInfo() {
+            if (!currentAdminInstitute) return;
+            
+            document.getElementById('institute-info-display').innerHTML = `
+                <p><strong>নাম:</strong> ${currentAdminInstitute.name}</p>
+                <p><strong>ঠিকানা:</strong> ${currentAdminInstitute.address}, ${currentAdminInstitute.district}</p>
+                <p><strong>ফোন:</strong> ${currentAdminInstitute.phone}</p>
+                <p><strong>ইমেইল:</strong> ${currentAdminInstitute.email}</p>
+            `;
+            
+            document.getElementById('institute-code-display').textContent = currentAdminInstitute.code;
+        }
+
+        // ২৫. লোকাল স্টোরেজ থেকে ডাটা লোড করা
+        window.addEventListener('load', function() {
+            // বছর আপডেট করা
+            updateYear();
+            
+            // ইনস্টিটিউট ড্রপডাউন পপুলেট করা
+            populateAdminInstituteDropdown();
+            
+            // বেসরকারি ইনস্টিটিউট লোড করা
+            const savedPrivateInstitutes = localStorage.getItem('privatePolytechnics');
+            if (savedPrivateInstitutes) {
+                privatePolytechnics = JSON.parse(savedPrivateInstitutes);
+            }
+            
+            // শিক্ষক লোড করা
+            loadTeachers();
+            
+            // যোগাযোগ তথ্য লোড করা
+            loadContactInfo();
+            
+            // URL থেকে পেজ লোড করা (যদি লিঙ্ক শেয়ার করা হয়)
+            const urlParams = new URLSearchParams(window.location.search);
+            const pageParam = urlParams.get('page');
+            if (pageParam && document.getElementById(pageParam)) {
+                goToPage(pageParam);
+            }
+        });
+
+        // ২৬. পেজ হিস্ট্রি ব্যাক বাটনের জন্য
+        window.addEventListener('popstate', function() {
+            if (currentPageHistory.length > 1) {
+                currentPageHistory.pop();
+                const previousPage = currentPageHistory[currentPageHistory.length - 1];
+                goToPage(previousPage);
+            }
+        });
+
+    </script>
+
+</body>
+</html>
